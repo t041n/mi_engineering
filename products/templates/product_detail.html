@@ -65,19 +65,56 @@
     },
     "manufacturer": {
       "@type": "Organization",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
       "name": "M.I. Engineering Works",
-      "url": "{{ request.scheme }}://{{ request.get_host }}/"
+      "url": "{{ request.scheme }}://{{ request.get_host }}/",
+      "telephone": "+91-9819972301",
+      "email": "miengineering17@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "17, Floor-2nd, Plot-15/17, Ratan Building, Narayan Dhuru Street, Pydhonie, Mandvi",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400003",
+        "addressCountry": "IN"
+      }
     },
     "offers": {
-      "@type": "Offer",
+      "@type": "AggregateOffer",
       "priceCurrency": "INR",
+      "price": "1.00",
+      "lowPrice": "1.00",
+      "offerCount": "1000",
       "availability": "{% if product.is_active %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "India"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Global / Export"
+        }
+      ],
       "seller": {
         "@type": "Organization",
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
         "name": "M.I. Engineering Works"
       }
     },
     "dateModified": "{{ product.updated_at|date:'c' }}"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+    "name": "M.I. Engineering Works",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
+    "telephone": "+91-9819972301",
+    "email": "miengineering17@gmail.com",
+    "areaServed": ["IN", "Worldwide"]
   },
   {
     "@context": "https://schema.org",

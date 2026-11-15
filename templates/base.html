@@ -51,35 +51,178 @@
     <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
       {% block schema_json %}
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
-        "name": "M.I. Engineering Works",
-        "url": "{{ request.scheme }}://{{ request.get_host }}/",
-        "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
-        "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/bg/login_bg.jpg' %}",
-        "description": "Manufacturer and provider of precision industrial engineering components and fasteners.",
-        "sameAs": [
-          "https://www.linkedin.com/company/m.i.-engineering-works/",
-          "https://www.instagram.com/miengineeringworks",
-          "https://share.google/vsRjFuXOCFplTZLta"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+          "name": "M.I. Engineering Works",
+          "legalName": "M.I. Engineering Works",
+          "url": "{{ request.scheme }}://{{ request.get_host }}/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
+            "caption": "M.I. Engineering Works Logo"
+          },
+          "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/bg/login_bg.jpg' %}",
+          "description": "Leading Indian manufacturer, supplier, and exporter of precision industrial fasteners, bolts, nuts, screws, washers, and custom engineering machine components.",
+          "founder": {
+            "@type": "Person",
+            "name": "Mohd Iliyas",
+            "jobTitle": "Owner & Managing Director"
+          },
+          "telephone": "+91-9819972301",
           "email": "miengineering17@gmail.com",
-          "availableLanguage": ["English"]
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "India"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Global / Export"
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/m.i.-engineering-works/",
+            "https://www.instagram.com/miengineeringworks",
+            "https://share.google/vsRjFuXOCFplTZLta"
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+91-9819972301",
+              "contactType": "sales",
+              "contactOption": "TollFree",
+              "areaServed": ["IN", "Worldwide"],
+              "availableLanguage": ["English", "Hindi"],
+              "email": "miengineering17@gmail.com"
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+91-9137658733",
+              "contactType": "technical support",
+              "areaServed": "IN",
+              "availableLanguage": ["English", "Hindi"],
+              "email": "miengineering17@gmail.com"
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+91-8369593849",
+              "contactType": "customer service",
+              "areaServed": "IN",
+              "availableLanguage": ["English", "Hindi"],
+              "email": "miengineering17@gmail.com"
+            }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "17, Floor-2nd, Plot-15/17, Ratan Building, Narayan Dhuru Street, Pydhonie, Mandvi",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400003",
+            "addressCountry": "IN"
+          }
         },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "17, Floor-2nd, Plot-15/17, Ratan Building, Narayan Dhuru Street, Pydhonie, Mandvi",
-          "addressLocality": "Mumbai",
-          "addressRegion": "Maharashtra",
-          "postalCode": "400003",
-          "addressCountry": "IN"
+        {
+          "@context": "https://schema.org",
+          "@type": ["LocalBusiness", "ManufacturingBusiness"],
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#office",
+          "name": "M.I. Engineering Works - Registered Office",
+          "alternateName": "M.I. Engineering Works Head Office",
+          "url": "{{ request.scheme }}://{{ request.get_host }}/",
+          "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
+          "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/bg/login_bg.jpg' %}",
+          "description": "Head office and commercial sales division for M.I. Engineering Works fasteners and precision components.",
+          "telephone": "+91-9819972301",
+          "email": "miengineering17@gmail.com",
+          "parentOrganization": {
+            "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "17, Floor-2nd, Plot-15/17, Ratan Building, Narayan Dhuru Street, Pydhonie, Mandvi",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400003",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 18.9482,
+            "longitude": 72.8347
+          },
+          "hasMap": "https://maps.google.com/maps?q=Ratan+Building,+Narayan+Dhuru+Street,+Pydhonie,+Mandvi,+Mumbai+400003",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "09:30",
+              "closes": "19:00"
+            }
+          ],
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "India"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Global / Export"
+            }
+          ],
+          "priceRange": "$$"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": ["LocalBusiness", "ManufacturingBusiness"],
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#manufacturing-facility",
+          "name": "M.I. Engineering Works - Manufacturing Works",
+          "alternateName": "M.I. Engineering Works Factory & Workshop",
+          "url": "{{ request.scheme }}://{{ request.get_host }}/",
+          "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
+          "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/bg/login_bg.jpg' %}",
+          "description": "Precision machining, CNC forging, threading, and industrial fabrication workshop of M.I. Engineering Works.",
+          "telephone": "+91-9819972301",
+          "email": "miengineering17@gmail.com",
+          "parentOrganization": {
+            "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Ground Floor, Plot 222, Chhota Sonapur Compound, Maulana Shaukat Ali Road, Anjuman High School",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400008",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 18.9612,
+            "longitude": 72.8276
+          },
+          "hasMap": "https://maps.google.com/maps?q=Plot+222,+Chhota+Sonapur+Compound,+Maulana+Shaukat+Ali+Road,+Mumbai+400008",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "09:00",
+              "closes": "20:00"
+            }
+          ],
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "India"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Global / Export"
+            }
+          ],
+          "priceRange": "$$"
         }
-      }
+      ]
       {% endblock %}
     </script>
 

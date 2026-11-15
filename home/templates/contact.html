@@ -18,25 +18,137 @@
 {% block meta_robots %}noindex, follow{% endblock %}
 
 {% block schema_json %}
-{
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Contact M.I. Engineering Works",
-  "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'home:contact-us' %}",
-  "description": "Contact page for industrial bulk quotations and custom engineering component inquiries.",
-  "mainEntity": {
-    "@type": "LocalBusiness",
-    "name": "M.I. Engineering Works",
-    "url": "{{ request.scheme }}://{{ request.get_host }}/",
-    "email": "miengineering17@gmail.com",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "sales",
-      "availableLanguage": ["English"],
-      "email": "miengineering17@gmail.com"
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact M.I. Engineering Works",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'home:contact-us' %}",
+    "description": "Contact page for industrial bulk quotations, custom fastener engineering, and technical drawings submissions.",
+    "mainEntity": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+    "name": "M.I. Engineering Works",
+    "legalName": "M.I. Engineering Works",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}",
+    "email": "miengineering17@gmail.com",
+    "telephone": "+91-9819972301",
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "India"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Global / Export"
+      }
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-9819972301",
+        "contactType": "sales",
+        "email": "miengineering17@gmail.com",
+        "areaServed": ["IN", "Worldwide"],
+        "availableLanguage": ["English", "Hindi"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-9137658733",
+        "contactType": "technical support",
+        "email": "miengineering17@gmail.com",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-8369593849",
+        "contactType": "customer service",
+        "email": "miengineering17@gmail.com",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ManufacturingBusiness"],
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#office",
+    "name": "M.I. Engineering Works - Registered Office",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "telephone": "+91-9819972301",
+    "email": "miengineering17@gmail.com",
+    "parentOrganization": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "17, Floor-2nd, Plot-15/17, Ratan Building, Narayan Dhuru Street, Pydhonie, Mandvi",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400003",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 18.9482,
+      "longitude": 72.8347
+    },
+    "hasMap": "https://maps.google.com/maps?q=Ratan+Building,+Narayan+Dhuru+Street,+Pydhonie,+Mandvi,+Mumbai+400003",
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "India"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Global / Export"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ManufacturingBusiness"],
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#manufacturing-facility",
+    "name": "M.I. Engineering Works - Manufacturing Works",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "telephone": "+91-9819972301",
+    "email": "miengineering17@gmail.com",
+    "parentOrganization": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ground Floor, Plot 222, Chhota Sonapur Compound, Maulana Shaukat Ali Road, Anjuman High School",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400008",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 18.9612,
+      "longitude": 72.8276
+    },
+    "hasMap": "https://maps.google.com/maps?q=Plot+222,+Chhota+Sonapur+Compound,+Maulana+Shaukat+Ali+Road,+Mumbai+400008",
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "India"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Global / Export"
+      }
+    ]
   }
-}
+]
 {% endblock %}
 
 {% block content %}
