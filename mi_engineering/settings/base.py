@@ -14,10 +14,13 @@ INSTALLED_APPS = [
     'unfold', 'django_htmx', 'django_ckeditor_5', 'django.contrib.admin',
     'django.contrib.auth', 'django.contrib.contenttypes',
     'django.contrib.sessions', 'django.contrib.messages',
-    'django.contrib.staticfiles', 'django.contrib.sitemaps',
-    'meta',
+    'django.contrib.staticfiles', 'django.contrib.sites',
+    'django.contrib.redirects', 'django.contrib.sitemaps',
+    'imagekit', 'meta',
     'home', 'accounts', 'gallery', 'products'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -28,7 +31,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_htmx.middleware.HtmxMiddleware'
+    'django_htmx.middleware.HtmxMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'mi_engineering.urls'

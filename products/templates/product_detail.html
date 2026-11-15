@@ -42,12 +42,23 @@
     "name": "{{ product.title|escapejs }}",
     "image": [
       {% for img in product.images.all %}
-        "{{ request.scheme }}://{{ request.get_host }}{{ img.image.url }}"{% if not forloop.last %},{% endif %}
+        "{{ request.scheme }}://{{ request.get_host }}{% if img.display_image %}{{ img.display_image.url }}{% else %}{{ img.image.url }}{% endif %}"{% if not forloop.last %},{% endif %}
       {% endfor %}
     ],
     "description": "{% if product.short_description %}{{ product.short_description|escapejs }}{% else %}{{ product.title|escapejs }}{% endif %}",
     "category": "{{ product.category.name|escapejs }}",
     {% if product.display_material %}"material": "{{ product.display_material|escapejs }}",{% endif %}
+    {% if product.specifications.all %}
+    "additionalProperty": [
+      {% for spec in product.specifications.all %}
+      {
+        "@type": "PropertyValue",
+        "name": "{{ spec.key|escapejs }}",
+        "value": "{{ spec.value|escapejs }}"
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ],
+    {% endif %}
     "brand": {
       "@type": "Brand",
       "name": "M.I. Engineering Works"
@@ -112,14 +123,29 @@
             {{ product.short_description }}
           </p>
 
-          {% if product.materials.all or product.specifications.all %}
+          {% if product.materials.all or product.specifications.all or product.standards.all %}
           <div class="pt-4 pb-2 border-t border-brand-border/60">
             <div class="overflow-x-auto rounded-xl border border-brand-border shadow-sm bg-white">
               <table class="w-full text-left text-sm border-collapse">
+                <caption class="sr-only">{{ product.title }} Technical Specifications and Conforming Standards</caption>
                 <tbody class="divide-y divide-brand-border/60">
+                  {% if product.standards.all %}
+                  <tr class="hover:bg-brand-secondaryBg/50 transition">
+                    <th scope="row" class="py-2.5 px-4 font-semibold text-brand-heading bg-brand-secondaryBg/50 border-r border-brand-border/60 w-1/3">Standards</th>
+                    <td class="py-2.5 px-4 text-brand-body font-medium">
+                      <div class="flex flex-wrap gap-1.5">
+                        {% for std in product.standards.all %}
+                        <a href="{% url 'products:standard_product_list' std.slug %}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-brand-secondaryBg text-xs font-semibold text-brand-heading hover:text-brand-accent transition">
+                          {{ std.name }}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </td>
+                  </tr>
+                  {% endif %}
                   {% if product.materials.all %}
                   <tr class="hover:bg-brand-secondaryBg/50 transition">
-                    <th class="py-2.5 px-4 font-semibold text-brand-heading bg-brand-secondaryBg/50 border-r border-brand-border/60 w-1/3">Material</th>
+                    <th scope="row" class="py-2.5 px-4 font-semibold text-brand-heading bg-brand-secondaryBg/50 border-r border-brand-border/60 w-1/3">Material</th>
                     <td class="py-2.5 px-4 text-brand-body font-medium">
                       <div class="flex flex-wrap gap-1.5">
                         {% for mat in product.materials.all %}
@@ -131,7 +157,7 @@
                   {% endif %}
                   {% for spec in product.specifications.all %}
                   <tr class="hover:bg-brand-secondaryBg/50 transition">
-                    <th class="py-2.5 px-4 font-semibold text-brand-heading bg-brand-secondaryBg/50 border-r border-brand-border/60 w-1/3">{{ spec.key }}</th>
+                    <th scope="row" class="py-2.5 px-4 font-semibold text-brand-heading bg-brand-secondaryBg/50 border-r border-brand-border/60 w-1/3">{{ spec.key }}</th>
                     <td class="py-2.5 px-4 text-brand-body font-medium">{{ spec.value }}</td>
                   </tr>
                   {% endfor %}

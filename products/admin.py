@@ -60,9 +60,14 @@ class ProductImageInline(TabularInline):
 
     def image_preview(self, obj):
         if obj.image:
+            # Prefer ImageKit thumbnail if generated, fallback to image.url
+            try:
+                url = obj.thumbnail.url if hasattr(obj, "thumbnail") and obj.thumbnail else obj.image.url
+            except Exception:
+                url = obj.image.url
             return format_html(
-                '<img src="{}" style="max-height: 40px; border-radius: 4px;" />',
-                obj.image.url,
+                '<img src="{}" style="max-height: 48px; max-width: 48px; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" />',
+                url,
             )
         return "No Image"
 
@@ -197,9 +202,13 @@ class ProductAdmin(ModelAdmin):
     def primary_thumbnail(self, obj):
         img = obj.primary_image
         if img and img.image:
+            try:
+                url = img.thumbnail.url if hasattr(img, "thumbnail") and img.thumbnail else img.image.url
+            except Exception:
+                url = img.image.url
             return format_html(
-                '<img src="{}" style="max-height: 32px; max-width: 32px; object-fit: cover; border-radius: 4px;" />',
-                img.image.url,
+                '<img src="{}" style="max-height: 36px; max-width: 36px; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" />',
+                url,
             )
         return "—"
 

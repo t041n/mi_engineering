@@ -16,11 +16,11 @@
         {% with product.primary_image as primary_image %}
           {% if primary_image %}
           <img
-            src="{{ primary_image.image.url }}"
-            alt="{{ product.title }} - {{ product.material|default:'Industrial Component' }}"
+            src="{% if primary_image.card_thumbnail %}{{ primary_image.card_thumbnail.url }}{% else %}{{ primary_image.image.url }}{% endif %}"
+            alt="{{ primary_image.alt_text|default:product.title }}"
             loading="lazy"
-            width="300"
-            height="300"
+            width="400"
+            height="400"
             class="w-full h-full object-contain group-hover:scale-105 transition duration-300"
           />
           {% else %}

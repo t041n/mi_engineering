@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING
 from django.db import models
-from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFit, ResizeToFill
+from utils.seo import industrial_slugify
 
 if TYPE_CHECKING:
     from django.db.models.manager import RelatedManager
@@ -39,7 +41,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.name) or "category"
+            base_slug = industrial_slugify(self.name) or "category"
             slug = base_slug
             counter = 1
             while Category.objects.filter(slug=slug).exclude(id=self.id).exists():
@@ -82,7 +84,7 @@ class Application(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.name) or "application"
+            base_slug = industrial_slugify(self.name) or "application"
             slug = base_slug
             counter = 1
             while Application.objects.filter(slug=slug).exclude(id=self.id).exists():
@@ -124,7 +126,7 @@ class Standard(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.name) or "standard"
+            base_slug = industrial_slugify(self.name) or "standard"
             slug = base_slug
             counter = 1
             while Standard.objects.filter(slug=slug).exclude(id=self.id).exists():
@@ -167,7 +169,7 @@ class Material(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.name) or "material"
+            base_slug = industrial_slugify(self.name) or "material"
             slug = base_slug
             counter = 1
             while Material.objects.filter(slug=slug).exclude(id=self.id).exists():
@@ -274,7 +276,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.title)
+            base_slug = industrial_slugify(self.title) or "product"
             slug = base_slug
             counter = 1
             while Product.objects.filter(slug=slug).exclude(
@@ -300,6 +302,26 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to="products/")
     alt_text = models.CharField(max_length=255, blank=True, default="")
     is_primary = models.BooleanField(default=False)
+
+    # ImageKit specs: optimized WebP thumbnails and web display for Core Web Vitals
+    thumbnail = ImageSpecField(
+        source="image",
+        processors=[ResizeToFill(120, 120)],
+        format="WEBP",
+        options={"quality": 85},
+    )
+    card_thumbnail = ImageSpecField(
+        source="image",
+        processors=[ResizeToFill(400, 400)],
+        format="WEBP",
+        options={"quality": 85},
+    )
+    display_image = ImageSpecField(
+        source="image",
+        processors=[ResizeToFit(1000, 1000)],
+        format="WEBP",
+        options={"quality": 90},
+    )
 
     def save(self, *args, **kwargs):
         if self.is_primary:
