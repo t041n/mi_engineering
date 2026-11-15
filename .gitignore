@@ -109,6 +109,11 @@ main.env
 # Testing & Code Quality
 # ==========================================
 
+tests.py
+test_*.py
+*_test.py
+tests/
+
 htmlcov/
 .tox/
 .nox/
