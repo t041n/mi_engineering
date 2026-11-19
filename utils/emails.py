@@ -53,8 +53,8 @@ def send_app_email(subject: str,
                 elif hasattr(item, "path"):
                     try:
                         email.attach_file(item.path)
-                    except Exception:
-                        pass
+                    except Exception as err:
+                        logger.warning(f"Could not attach file {getattr(item, 'name', item)}: {err}")
 
         email.send(fail_silently=fail_silently)
 

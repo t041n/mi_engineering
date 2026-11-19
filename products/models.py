@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
-from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from utils.seo import industrial_slugify
 

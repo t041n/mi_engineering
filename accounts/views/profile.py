@@ -25,7 +25,7 @@ class ClientProfileView(LoginRequiredMixin, TemplateView):
         user: "User" = self.request.user  # type: ignore
 
         enquiries_queryset = ContactInquiry.objects.filter(
-            user=user).order_by("-created_at")
+            user=user).select_related("user").order_by("-created_at")[:100]
 
         context.update({
             "enquiries":
