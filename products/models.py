@@ -363,3 +363,38 @@ class ProductSpecification(models.Model):
 
     def __str__(self):
         return f"{self.key}: {self.value}"
+
+
+class ProductFAQ(models.Model):
+    """
+    Frequently Asked Questions for Answer Engine Optimisation (AEO),
+    Google Featured Snippets, and FAQPage Schema.
+    """
+    if TYPE_CHECKING:
+        id: int
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="faqs",
+    )
+    question = models.CharField(
+        max_length=300,
+        help_text="Clear, direct question (e.g., What is the difference between B7 and B7M stud bolts?)",
+    )
+    answer = models.TextField(
+        help_text="Concise, factual answer optimized for AI Overviews and Featured Snippets.",
+    )
+    display_order = models.PositiveIntegerField(
+        default=0,
+        help_text="Lower numbers appear first",
+    )
+
+    class Meta:
+        ordering = ["display_order", "id"]
+        verbose_name = "Product FAQ"
+        verbose_name_plural = "Product FAQs"
+
+    def __str__(self):
+        return f"FAQ: {self.question[:60]}"
+

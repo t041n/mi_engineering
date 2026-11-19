@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from django.views.static import serve
 
+from home.views import LLMsTxtView
 from home.sitemaps import (
     ApplicationSitemap,
     CategorySitemap,
@@ -49,6 +50,13 @@ urlpatterns = [
             content_type="text/plain",
         ),
         name="robots-txt",
+    ),
+
+    # GEO / AI Agents: llms.txt (Direct root path)
+    path(
+        "llms.txt",
+        LLMsTxtView.as_view(),
+        name="llms-txt",
     ),
     
     # Favicon Root Redirect

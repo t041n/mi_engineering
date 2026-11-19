@@ -5,6 +5,7 @@ from .views import (
     ContactView,
     TermsOfServiceView,
     PrivacyPolicyView,
+    LLMsTxtView,
 )
 
 app_name = "home"
@@ -18,4 +19,5 @@ urlpatterns = [
          name="terms-of-service"),
     path("privacy-policy/", PrivacyPolicyView.as_view(),
          name="privacy-policy"),
+    path("llms.txt", LLMsTxtView.as_view(), name="llms-txt"),
 ]

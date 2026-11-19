@@ -1,6 +1,17 @@
-from .homepage import HomePageView, AboutView, ContactView, PrivacyPolicyView, TermsOfServiceView
+from .homepage import (
+    HomePageView,
+    AboutView,
+    ContactView,
+    PrivacyPolicyView,
+    TermsOfServiceView,
+    LLMsTxtView,
+)
 
 __all__ = [
-    'HomePageView', 'AboutView', 'ContactView', 'PrivacyPolicyView',
-    'TermsOfServiceView'
+    'HomePageView',
+    'AboutView',
+    'ContactView',
+    'PrivacyPolicyView',
+    'TermsOfServiceView',
+    'LLMsTxtView',
 ]

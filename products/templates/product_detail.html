@@ -129,7 +129,23 @@
       {"@type": "ListItem", "position": 3, "name": "{{ product.title|escapejs }}", "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'products:product_detail' product.slug %}"}
       {% endif %}
     ]
-  }
+  }{% if product.faqs.all %},
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for faq in product.faqs.all %}
+      {
+        "@type": "Question",
+        "name": "{{ faq.question|escapejs }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ faq.answer|escapejs }}"
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }{% endif %}
 ]
 {% endblock %}
 

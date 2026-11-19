@@ -3,6 +3,34 @@ Allow: /
 Disallow: /admin/
 Disallow: /accounts/
 Disallow: /ckeditor5/
-Disallow: /media/
+Disallow: /media/temp/
 
+# Dedicated AI Crawlers (Search & Reasoning Engines)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /ckeditor5/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/
+
+# Sitemaps & Machine Instructions
 Sitemap: https://miengineeringworks.in/sitemap.xml

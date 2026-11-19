@@ -2,7 +2,16 @@ from django.contrib import admin
 from unfold.admin import ModelAdmin, TabularInline
 from django.utils.html import format_html
 
-from .models import Category, Product, ProductImage, ProductSpecification, Application, Standard, Material
+from .models import (
+    Category,
+    Product,
+    ProductImage,
+    ProductSpecification,
+    ProductFAQ,
+    Application,
+    Standard,
+    Material,
+)
 
 @admin.register(Material)
 class MaterialAdmin(ModelAdmin):
@@ -121,6 +130,12 @@ class ProductSpecificationInline(TabularInline):
     extra = 1
 
 
+class ProductFAQInline(TabularInline):
+    model = ProductFAQ
+    extra = 1
+    fields = ("question", "answer", "display_order")
+
+
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
     list_display = ("name", "slug", "is_active")
@@ -157,7 +172,7 @@ class ProductAdmin(ModelAdmin):
     search_fields = ("title", "materials__name")
     prepopulated_fields = {"slug": ("title", )}
     autocomplete_fields = ("materials", "applications", "standards")
-    inlines = [ProductImageInline, ProductSpecificationInline]
+    inlines = [ProductImageInline, ProductSpecificationInline, ProductFAQInline]
 
     fieldsets = (
         (
