@@ -18,38 +18,94 @@
 {% block twitter_description %}Manufacturer & supplier of precision industrial fasteners and custom engineering components built to ISO, DIN, and ASTM standards.{% endblock %}
 
 {% block schema_json %}
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
-  "name": "M.I. Engineering Works",
-  "url": "{{ request.scheme }}://{{ request.get_host }}/",
-  "description": "Manufacturer and supplier of precision-engineered industrial fasteners and custom components.",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
     "name": "M.I. Engineering Works",
     "url": "{{ request.scheme }}://{{ request.get_host }}/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}"
+    "description": "Manufacturer and supplier of precision-engineered industrial fasteners and custom components.",
+    "publisher": {
+      "@type": "Organization",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+      "name": "M.I. Engineering Works",
+      "url": "{{ request.scheme }}://{{ request.get_host }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo/logo.png' %}"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "miengineering17@gmail.com",
+        "availableLanguage": ["English"]
+      }
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "miengineering17@gmail.com",
-      "availableLanguage": ["English"]
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}{% url 'products:product_list' %}?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
   },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}{% url 'products:product_list' %}?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are industrial fasteners and what types does M.I. Engineering Works manufacture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Industrial fasteners are high-integrity hardware components designed to mechanically join or affix materials in engineering assemblies under mechanical stress, vibration, temperature extremes, and corrosive environments. M.I. Engineering Works manufactures bolts, nuts, stud bolts, socket cap screws, washers, threaded rods (M3 to M64), anchor fasteners, pins, and custom CNC drawing-based components built strictly to DIN, ISO, ASTM, and ASME standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ASTM A193 Grade B7 and where is it used?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ASTM A193 Grade B7 is a heat-treated chromium-molybdenum alloy steel specification (AISI 4140/4142 quenched and tempered) designed for high-temperature and high-pressure service with a minimum tensile strength of 125 ksi (860 MPa). It is extensively used in pressure vessels, pipeline flanges, heat exchangers, valves, and petrochemical refinery plant connections, routinely paired with ASTM A194 Grade 2H heavy hex nuts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between ASTM A193 Grade B7 and Grade B7M?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grade B7M undergoes specialized post-weld/temper heat treatment to limit maximum hardness to 235 HB (99 HRB) and a minimum tensile strength of 100 ksi (690 MPa). This controlled hardness enables B7M fasteners to resist Sulfide Stress Cracking (SSC) in sour gas environments, making them compliant with NACE MR0175 / ISO 15156 standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the metallurgical difference between Stainless Steel 304 and 316?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The fundamental difference is the addition of 2.0% to 3.0% Molybdenum in SS316 (A4 grade), which SS304 (A2 grade) lacks. SS304 is ideal for standard industrial, architectural, and food-grade uses. SS316 provides superior resistance to chlorides, marine sea water, and localized pitting corrosion, making it mandatory for marine and offshore installations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I select the correct fastener material for a specific application?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fastener selection depends on operating temperature (cryogenic vs high-temp B7/B16/Inconel), corrosion severity (SS316, Duplex 2205, Monel 400), tensile and shear load (Grade 8.8, 10.9, 12.9, ASTM A325/A490), and galvanic compatibility with mating materials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you supply EN 10204 3.1 Mill Test Certificates (MTC) and export packaging?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every production batch at M.I. Engineering Works can be supplied with certified EN 10204 3.1 Mill Test Certificates (MTC) verifying raw material heat numbers, chemical composition analysis, and mechanical testing results. Shipments are packed in anti-corrosion treated poly-lined cartons and ISPM-15 seaworthy wooden pallets for domestic and global export."
+        }
+      }
+    ]
   }
-}
+]
 {% endblock %}
 
 {% block content %}
@@ -66,7 +122,10 @@
   <!-- 4. Industries Served & Enquiry Process -->
   {% include 'partials/home/_industries_process.html' %}
 
-  <!-- 5. Quality Assurance & Final Call-to-Action -->
+  <!-- 5. Technical FAQs (AEO & Featured Snippets) -->
+  {% include 'partials/home/_faqs.html' %}
+
+  <!-- 6. Quality Assurance & Final Call-to-Action -->
   {% include 'partials/home/_quality_cta.html' %}
 </div>
 {% endblock %}

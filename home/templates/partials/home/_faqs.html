@@ -1,0 +1,146 @@
+<!-- Homepage FAQs (AEO & Featured Snippets) -->
+<section class="py-12 bg-white rounded-3xl border border-brand-border p-6 md:p-10 shadow-sm" aria-labelledby="homepage-faq-heading">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="text-center space-y-2">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-accent bg-brand-lightAccentBg px-3 py-1 rounded-full">
+        Technical Knowledge Base &amp; AEO
+      </span>
+      <h2 id="homepage-faq-heading" class="text-2xl sm:text-3xl font-extrabold text-brand-heading tracking-tight">
+        Frequently Asked Technical Questions
+      </h2>
+      <p class="text-sm text-brand-muted max-w-2xl mx-auto">
+        Clear, factual answers on industrial fastener standards, material grades (B7 vs B7M, SS304 vs SS316), and manufacturing compliance for purchase managers and engineering teams.
+      </p>
+    </div>
+
+    <div class="space-y-4 pt-4" x-data="{ activeAccordion: null }">
+      <!-- FAQ 1 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 1 ? null : 1"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 1"
+        >
+          <span>What are industrial fasteners and what types does M.I. Engineering Works manufacture?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 1 }"></i>
+        </button>
+        <div x-show="activeAccordion === 1" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>
+            Industrial fasteners are high-integrity hardware components designed to mechanically join or affix materials in engineering assemblies under mechanical stress, vibration, temperature extremes, and corrosive environments.
+          </p>
+          <p>
+            M.I. Engineering Works manufactures bolts, nuts, continuous-thread stud bolts, socket cap screws, plain and spring washers, threaded rods (M3 to M64), heavy-duty anchor fasteners, solid/dowel pins, and custom drawing-based machined turned components built strictly to DIN, ISO, ASTM, and ASME standards.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 2 ? null : 2"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 2"
+        >
+          <span>What is ASTM A193 Grade B7 and where is it used?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 2 }"></i>
+        </button>
+        <div x-show="activeAccordion = 2" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>
+            <strong>ASTM A193 Grade B7</strong> is a heat-treated chromium-molybdenum alloy steel specification (AISI 4140/4142 quenched and tempered) designed for high-temperature and high-pressure service with a minimum tensile strength of 125 ksi (860 MPa) and yield strength of 105 ksi (720 MPa).
+          </p>
+          <p>
+            It is extensively used in pressure vessels, pipeline flanges, heat exchangers, valves, and petrochemical refinery plant connections, routinely paired with <strong>ASTM A194 Grade 2H heavy hex nuts</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 3 ? null : 3"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 3"
+        >
+          <span>What is the difference between ASTM A193 Grade B7 and Grade B7M?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 3 }"></i>
+        </button>
+        <div x-show="activeAccordion === 3" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>
+            While both share similar base alloy chemistry, <strong>Grade B7M</strong> undergoes specialized post-weld/temper heat treatment to limit maximum hardness to <strong>235 HB (99 HRB)</strong> and a lower minimum tensile strength of 100 ksi (690 MPa).
+          </p>
+          <p>
+            This strictly controlled hardness enables B7M fasteners to resist Sulfide Stress Cracking (SSC) in sour gas environments, making them compliant with <strong>NACE MR0175 / ISO 15156</strong> standards for upstream oil and gas operations.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 4 ? null : 4"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 4"
+        >
+          <span>What is the metallurgical difference between Stainless Steel 304 and 316?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 4 }"></i>
+        </button>
+        <div x-show="activeAccordion === 4" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>
+            The fundamental difference is the addition of <strong>2.0% to 3.0% Molybdenum</strong> in SS316 (A4 grade), which SS304 (A2 grade) lacks:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>SS304 (18/8 Chrome-Nickel):</strong> Excellent general-purpose corrosion resistance for standard industrial, architectural, food-grade, and manufacturing uses.</li>
+            <li><strong>SS316 (Chrome-Nickel-Moly):</strong> Exceptional resistance to chlorides, saline sea water, chemical acids, and localized pitting or crevice corrosion, making it mandatory for marine and offshore installations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 5 ? null : 5"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 5"
+        >
+          <span>How do I select the correct fastener material for a specific application?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 5 }"></i>
+        </button>
+        <div x-show="activeAccordion === 5" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>Fastener selection depends on four fundamental operating criteria:</p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li><strong>Operating Temperature:</strong> Cryogenic services require SS304/SS316 (B8/B8M), whereas high temperatures (>400°C) require ASTM A193 B7, B16, or Inconel 718.</li>
+            <li><strong>Corrosion Severity:</strong> Coastal and marine atmospheres require SS316, Duplex 2205, or Super Duplex 2507; severe acid plants require Hastelloy or Monel 400.</li>
+            <li><strong>Tensile &amp; Shear Load:</strong> High structural loads dictate Grade 8.8, 10.9, 12.9, or ASTM A325/A490 bolts.</li>
+            <li><strong>Material Compatibility:</strong> Mating materials must avoid galvanic corrosion (e.g., using stainless fasteners on aluminum without insulating washers).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="border border-brand-border rounded-2xl p-5 bg-brand-secondaryBg/30 hover:border-brand-accent/50 transition shadow-sm">
+        <button
+          type="button"
+          @click="activeAccordion = activeAccordion === 6 ? null : 6"
+          class="w-full flex justify-between items-center text-left text-base font-bold text-brand-heading hover:text-brand-accent transition gap-4"
+          :aria-expanded="activeAccordion === 6"
+        >
+          <span>Do you supply EN 10204 3.1 Mill Test Certificates (MTC) and export packaging?</span>
+          <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180 text-brand-accent': activeAccordion === 6 }"></i>
+        </button>
+        <div x-show="activeAccordion === 6" x-collapse class="mt-3 pt-3 border-t border-brand-border/60 text-sm text-brand-body leading-relaxed space-y-2">
+          <p>
+            Yes. Every production batch at M.I. Engineering Works can be supplied with certified <strong>EN 10204 3.1 Mill Test Certificates (MTC)</strong> verifying raw material heat numbers, chemical composition analysis, and mechanical testing results (tensile, yield, proof load, elongation, hardness).
+          </p>
+          <p>
+            For domestic and global export shipments (via Nhava Sheva / JNPT Port or Mumbai Air Cargo), components are treated with anti-corrosion oil, sealed in poly-lined corrugated cartons, and palletized in ISPM-15 heat-treated seaworthy wooden crates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
