@@ -51,22 +51,7 @@ class LLMsTxtView(View):
                 cat_url = f"{base_url}{reverse('products:category_product_list', kwargs={'category_slug': cat.slug})}"
                 lines.append(f"- [{cat.name}]({cat_url}): {cat.description or 'Precision fasteners and hardware components.'}")
         else:
-            default_cats = [
-                ("Bolts and Nuts", "/products/"),
-                ("Stud Bolts", "/products/"),
-                ("Screws and Washers", "/products/"),
-                ("Threaded Rods", "/products/"),
-                ("Anchor Fasteners", "/products/"),
-                ("Rivets and Pins", "/products/"),
-                ("Pipe Fittings and Flanges", "/products/"),
-                ("Stainless Steel Fasteners (304, 316, 316L, 310, 321)", "/products/"),
-                ("Alloy Steel Fasteners (ASTM A193 B7/B7M, B16, Grade 8.8, 10.9, 12.9)", "/products/"),
-                ("Duplex and Super Duplex Fasteners (2205, 2507)", "/products/"),
-                ("Inconel and Monel Fasteners (600, 625, 718, 400, K500)", "/products/"),
-                ("Special and Custom Fasteners (Drawing-based)", "/products/"),
-            ]
-            for name, path in default_cats:
-                lines.append(f"- [{name}]({base_url}{path})")
+            lines.append(f"- All categories and engineering products are cataloged dynamically: [{base_url}/products/]({base_url}/products/)")
 
         lines.extend([
             "",
@@ -77,8 +62,7 @@ class LLMsTxtView(View):
                 std_url = f"{base_url}{reverse('products:standard_product_list', kwargs={'standard_slug': std.slug})}"
                 lines.append(f"- [{std.name}]({std_url})")
         else:
-            for std_name in ["DIN 933 / DIN 931 (Hexagon Head Bolts)", "DIN 934 (Hexagon Nuts)", "ASTM A193 (Grade B7, B7M, B8, B8M Stud Bolts)", "ASTM A194 (Grade 2H, 7, 8, 8M Nuts)", "ISO 4014 / ISO 4017", "ASTM A325 / ASTM A490 (Structural Bolts)", "DIN 975 / DIN 976 (Threaded Rods)", "DIN 125 / DIN 127 (Washers)"]:
-                lines.append(f"- {std_name}")
+            lines.append(f"- Standards (ISO, DIN, ASTM, ASME, IS) are dynamically mapped per product: [{base_url}/products/standards/]({base_url}/products/standards/)")
 
         lines.extend([
             "",
@@ -89,8 +73,7 @@ class LLMsTxtView(View):
                 mat_url = f"{base_url}{reverse('products:material_product_list', kwargs={'material_slug': mat.slug})}"
                 lines.append(f"- [{mat.name}]({mat_url})")
         else:
-            for mat_name in ["Stainless Steel (SS 304, 304L, 316, 316L, 310, 321)", "High-Tensile Alloy Steel (Grade 8.8, 10.9, 12.9, B7, B7M)", "Carbon Steel & Mild Steel", "Duplex (2205 / UNS S31803) & Super Duplex (2507 / UNS S32750)", "High Nickel Alloys (Inconel 625/718, Monel 400/K500, Hastelloy)", "Brass, Bronze & Copper"]:
-                lines.append(f"- {mat_name}")
+            lines.append(f"- Material grades (Stainless Steel, High-Tensile Alloy, Duplex, Inconel, Brass) are cataloged per component: [{base_url}/products/materials/]({base_url}/products/materials/)")
 
         lines.extend([
             "",
@@ -101,8 +84,7 @@ class LLMsTxtView(View):
                 app_url = f"{base_url}{reverse('products:application_product_list', kwargs={'application_slug': app.slug})}"
                 lines.append(f"- [{app.name}]({app_url})")
         else:
-            for app_name in ["Oil, Gas & Petrochemical Refineries", "Heavy Machinery & Industrial Equipment", "Marine, Offshore & Shipbuilding", "Power Plants & Renewable Energy", "Civil Construction & Structural Engineering", "Automotive & Railway Infrastructure"]:
-                lines.append(f"- {app_name}")
+            lines.append(f"- Industry applications are mapped dynamically in the catalog: [{base_url}/products/applications/]({base_url}/products/applications/)")
 
         lines.extend([
             "",
