@@ -24,14 +24,15 @@ class ClientProfileView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user: "User" = self.request.user  # type: ignore
 
-        enquiries_queryset = ContactInquiry.objects.filter(
-            user=user).select_related("user").order_by("-created_at")[:100]
+        user_enquiries = ContactInquiry.objects.filter(user=user)
+        total_count = user_enquiries.count()
+        enquiries_queryset = user_enquiries.select_related("user").order_by("-created_at")[:100]
 
         context.update({
             "enquiries":
             enquiries_queryset,
             "total_enquiries_count":
-            enquiries_queryset.count(),
+            total_count,
             "profile_form":
             kwargs.get("profile_form") or UserProfileForm(instance=user),
         })

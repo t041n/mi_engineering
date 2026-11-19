@@ -3,6 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /accounts/
 Disallow: /ckeditor5/
+Disallow: /media/contact_inquiries/
 Disallow: /media/temp/
 
 # Dedicated AI Crawlers (Search & Reasoning Engines)

@@ -32,10 +32,7 @@ class ProductListView(ListView):
         # Material Filtering
         material_slug = self.kwargs.get("material_slug")
         if material_slug:
-            material_obj = get_object_or_404(Material, slug=material_slug)
-            queryset = queryset.filter(
-                Q(materials=material_obj)
-            ).distinct()
+            queryset = queryset.filter(materials__slug=material_slug).distinct()
 
         # Search Query Filtering
         search_query = self.request.GET.get("q")

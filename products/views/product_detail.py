@@ -12,7 +12,7 @@ class ProductDetailView(DetailView):
     def get_queryset(self):
         return (Product.objects.filter(
             is_active=True).select_related("category").prefetch_related(
-                "images", "specifications", "materials", "applications", "standards"))
+                "images", "specifications", "materials", "applications", "standards", "faqs"))
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
